@@ -66,7 +66,7 @@ HW6_4 = HW6_2 - linearInterp;
 % to see how diferent the linear approximation is 
 % from the true solution.
 
-plot (t, ytrue(:,1),'-k', tlinear, ylinear(:,1), ':r',t, linearInterp(:,1), '.b');
+% plot (t, ytrue(:,1),'-k', tlinear, ylinear(:,1), ':r',t, linearInterp(:,1), '.b');
 
 save HW6_2.dat HW6_2 -ascii;
 save HW6_3.dat HW6_3 -ascii;

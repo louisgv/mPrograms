@@ -8,6 +8,13 @@ function set4()
 % If the initial conditions are ca = 1, cb = 1, and cc = 1, find the concentrations
 % from 0 to 5 seconds.
 
+ode = @(t, a, b, c)[ 
+        
+     a, b, c;
+        
+    -b-c, a+0.2*b, 0.2+ c*(a-5.4)
+        
+    ];
 
 
 % - Save the ca(t) on HW6 9.dat file
