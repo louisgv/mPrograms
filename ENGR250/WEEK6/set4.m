@@ -8,11 +8,11 @@ function set4()
 % If the initial conditions are ca = 1, cb = 1, and cc = 1, find the concentrations
 % from 0 to 5 seconds.
 
-ode = @(t, a, b, c)[ 
-        
-     a, b, c;
-        
-    -b-c, a+0.2*b, 0.2+ c*(a-5.4)
+ode = @(t, y)[ 
+           
+    -y(2)-y(3);
+    y(1)+0.2*y(2);
+    0.2 + y(3)*(y(1)-5.4);
         
     ];
 
@@ -20,10 +20,12 @@ ode = @(t, a, b, c)[
 % - Save the ca(t) on HW6 9.dat file
 % - Save the cb(t) on HW6 10.dat file
 % - Save the cc(t) on HW6 11.dat file
-    
-HW6_9 = simpzsum( 0 , pi, f, 5, 1.8);
-HW6_10 = simpzsum( 0 , pi, f, 1, 9);
-HW6_11 = simpzsum( 0 , pi, f, 2, 9);
+
+[t, solution] = ode45( ode, [0 5], [1 1 1]);
+
+HW6_9  =    solution(:,1);
+HW6_10 =    solution(:,2);
+HW6_11 =    solution(:,3);
 
 save HW6_9.dat HW6_9 -ascii;
 save HW6_10.dat HW6_10 -ascii;
