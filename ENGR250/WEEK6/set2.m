@@ -17,7 +17,7 @@ ode_true = @(t, theta)[
         
      theta(2);
         
-    -g/l*sin(theta(1));
+    -g/l*sin(theta(1))
         
     ];
 
@@ -30,7 +30,7 @@ ode_lineear = @(t, theta)[
             
         theta(2);
 
-        -g/l*theta(1);
+        -g/l*theta(1)
         
         ];
 
@@ -45,30 +45,28 @@ ode_lineear = @(t, theta)[
 % - Save true(t), the solution for the 
 % true DifEQ 0  t  10 on HW6 2.dat
 
-[t, ytrue] = ode45 (ode_true, [0,10], [pi/2,0]);
+[t, ytrue] = ode45 (ode_true, [0 10], [pi/2 0]);
 HW6_2 = ytrue(:,1);
 
 % - Save linear(t), the solution for the 
 % linear DifEQ 0  t  10 on HW6 3.dat
 
-[tlinear, ylinear] = ode45 (ode_lineear, [0,10], [pi/2,0]);
+[tlinear, ylinear] = ode45 (ode_lineear, [0 10], [pi/2 0]);
 HW6_3 = ylinear(:,1);
 
 % - Calculate the diference, 
 % true(t) -linear(t), and save the vector on HW6 4.dat.
 
-length(HW6_2)
+linearInterp = interp1(tlinear, HW6_3, t);
 
-length(HW6_3)
-
-HW6_4 = HW6_2 - HW6_3;
+HW6_4 = HW6_2 - linearInterp;
 
 % Use linear interpolation of linear(t) if necessary.
 % Also, while it won't be graded, you should graph both 
 % to see how diferent the linear approximation is 
 % from the true solution.
 
-plot (t, ytrue(:,1),'-k', tlinear, ylinear(:,1), ':r');
+plot (t, ytrue(:,1),'-k', tlinear, ylinear(:,1), ':r',t, linearInterp(:,1), '.b');
 
 save HW6_2.dat HW6_2 -ascii;
 save HW6_3.dat HW6_3 -ascii;
