@@ -23,27 +23,3 @@ while ~isempty(isReady)
     isReady = [];
 end
 
-v0 = input('     ');
-if isempty(v0)
-    v0 = 25;
-end
-
-d = 25;
-% d = input ('    The Distance d from the #0 Cannon: [Enter for 25]');
-% if isempty(d)
-%     d = 25;
-% end
-
-t_1 = 2;
-
-theta1 = 60;
-
-theta2 = 135;
-
-% t_1 =     input('    The Initial Time of the #1 Cannon: ');
-% theta1 = input('    The Initial Angle of the #1 Cannon: ');
-% theta2 = input('    The Initial Angle of the #2 Cannon: ');
-% v0 = 25;
-
-
-
