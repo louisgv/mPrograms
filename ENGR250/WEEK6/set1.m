@@ -11,7 +11,7 @@ dy = @ (t,y) -10.8*y;
 
 HW6_1 = y;
 
-% plot (t, y,'-.k', t, exp(-10.8*t), '--r');
+plot (t, y,'-.k', t, exp(-10.8*t), '--r');
 
 % - save y(t); 0 < t < 5 on HW6 1.dat file
 
