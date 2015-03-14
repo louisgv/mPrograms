@@ -9,71 +9,182 @@ function set2()
 % The purpose of this problem is to provide an example of the value 
 % of splines by combining several things we have now learned.
 
-g = 9.81;
-l = 5.5;
+% We are going to examine y = sin(x) and 
+% its derivatives based on coarse data. 
+% Let
+xCoarse = 0:0.5:5;
+%  and
+yCoarse = sin(xCoarse);
+% Imagine, for the sake of this 
+% problem, that these two vectors are data 
+% that come from measurements, 
+% and you are unaware that they come from 
 
-% The diferential equation governing its motion 
-% is given by
-% r'' +g/l sin(r) = 0 
+% Your task is to calculate the first and 
+% second derivatives in 5 different ways. 
+% For many of these methods, we will need a 
+% finer x vector. Create a fine x vector,
+xFine = 0:0.01:5;
+% The five methods for the derivatives are:
 
-ode_true = @(t, theta)[ 
-        
-     theta(2);
-        
-    -g/l*sin(theta(1))
-        
-    ];
+% 1) True Derivative
+% The analytical solution to the first and 
+% second derivative, evaluated on xFine. 
 
-% In a class in ODEs, this equation is typically 
-% linearized to the following result so that 
-% an analytical solution can be obtained
-% r'' + g/l r = 0
+% Call the first derivative 
+dydxtrue = 0;
+% and second derivative 
+d2ydx2true = 0;
 
-ode_lineear = @(t, theta)[ 
-            
-        theta(2);
+% 2) Coarse Finite difference
+% Use O(del(x)^2) accurate finite difference 
+% schemes on the coarse data. 
 
-        -g/l*theta(1)
-        
-        ];
+% Call the derivatives 
+dydxcoarse = 0;
+% and 
+d2ydx2coarse = 0;
 
-% But this is a class in numerical methods! 
-% We are not hindered by such petty obstacles. 
-% Solve the system using both diferential equations 
-% and compare the results. 
+% 3) Finite difference on “nearest” interpolation
+% Using O(del(x)^2) accurate finite difference
+% schemes on the coarse data interpolated 
+% on xFine. Use the interp1 function with 
+% the ‘nearest’ option. 
 
-% Let r(0)= pi/2 and r'(0) = 0 in both cases.
+% Call the derivatives 
+dydxnearest = 0;
+% and 
+d2ydx2nearest= 0;
+
+% 4) Finite difference on linear interpolation
+% Using O(del(x)^2) accurate finite difference 
+% schemes on the coarse data interpolated 
+% on xFine. Use the interp1 function with 
+% the ‘linear’ option. 
+
+% Call the derivatives 
+dydxlinear = 0;
+% and 
+d2ydx2linear = 0;
+
+% Create three plots:
+% one for the function itself,
+% For the plot of the function, 
+% plot all 5 methods. 
+
+% one for the first derivative, and 
+% For the derivative, plot all except “nearest” 
+
+% one for the second derivative. 
+% For the second derivative, plot all except 
+% the linear and spline interpolation. 
 
 
-% - Save true(t), the solution for the 
-% true DifEQ 0  t  10 on HW6 2.dat
+% Notice how the accuracy of the 
+% interpolation methods degrades as 
+% higher derivatives are taken. 
 
-[t, ytrue] = ode45 (ode_true, [0 10], [pi/2 0]);
-HW6_2 = ytrue(:,1);
+% For each plot, make sure when you plot 
+% the coarse data you use a marker (like ‘o’) 
+% instead of a line, since this is only 
+% known at coarse locations.
 
-% - Save linear(t), the solution for the 
-% linear DifEQ 0  t  10 on HW6 3.dat
 
-[tlinear, ylinear] = ode45 (ode_lineear, [0 10], [pi/2 0]);
-HW6_3 = ylinear(:,1);
 
-% - Calculate the diference, 
-% true(t) -linear(t), and save the vector on HW6 4.dat.
+%-------------Notes--------------------------------------------------------
+% To make the plots and lines easier to 
+% distinguish, I recommend using the 
+% “legend” and “title” commands in Matlab.
 
-linearInterp = interp1(tlinear, HW6_3, t);
+% When option 1) above is unavailable 
+% (i.e., the function is not known), 
+%     and a derivative is needed, 
 
-HW6_4 = HW6_2 - linearInterp;
+%     (2) is the most obvious option, 
+%     but gives the derivative based only 
+%     on the coarse data. 
 
-% Use linear interpolation of linear(t) if necessary.
-% Also, while it won't be graded, you should graph both 
-% to see how diferent the linear approximation is 
-% from the true solution.
+%     With interpolation, we can get 
+%     finer data, but the accuracy degrades 
+%     quickly when we take higher derivatives.
+%     This is an advantage of splines. 
 
-% plot (t, ytrue(:,1),'-k', tlinear, ylinear(:,1), ':r',t, linearInterp(:,1), '.b');
+%     With higher order polynomial 
+%     interpolation, we can get even better 
+%     results that remain accurate to 
+%     higher derivatives.
+%-------------EoN----------------------------------------------------------
 
-save HW6_2.dat HW6_2 -ascii;
-save HW6_3.dat HW6_3 -ascii;
-save HW6_4.dat HW6_4 -ascii;
+% Answer the following questions in comments 
+% in your m-file:
+
+% 1) Regarding the plot of the function, 
+% rank the three interpolation methods 
+% from best to worst at:
+% a) Fitting the data (x_coarse, y_coarse)
+%-------------Respond Below--------------------
+% 
+% 
+% 
+%-------------End of Respond-------------------
+% b) Fitting the parent function, (y = sin(x))
+%-------------Respond Below--------------------
+% 
+% 
+% 
+%-------------End of Respond-------------------
+% 2) Regarding the calculation of the 
+% first derivative, rank the 4 methods 
+% from best to worst at fitting the 
+% parent function derivative, dy/dx = cos(x). 
+%-------------Respond Below--------------------
+% 
+% 
+% 
+%-------------End of Respond-------------------
+% How would you rate the accuracy 
+% of the spline considering 
+% how coarse the data was it came from?
+%-------------Respond Below--------------------
+% 
+% 
+% 
+%-------------End of Respond-------------------
+% 3) Regarding the calculation of the 
+% second derivative, rank the 4 methods 
+% from best to worst at fitting the 
+% parent function 
+% second derivative, d2y/d2x =-sin(x)
+%-------------Respond Below--------------------
+% 
+% 
+% 
+% 
+%-------------End of Respond-------------------
+
+%-------------Notes--------------------------------------------------------
+% While the results here are specific 
+%   to this problem, they generalize well 
+%   so long as our data comes from a function 
+%       which is infinitely differentiable 
+%       (we can take its derivative as 
+%       many times as we like), 
+%       which is how most physical 
+%       functions behave.
+%-------------EoN----------------------------------------------------------
+
+% Hope you had a good time in the class, 
+%-------------Respond Below--------------------
+% Sure did! Thanks for the knowledge, Sir!
+%-------------End of Respond-------------------
+%   and good luck in future endeavors. 
+%-------------Respond Below--------------------
+% Thank you Sir!
+%-------------End of Respond-------------------
+% Now, get some sleep.
+%-------------Respond Below--------------------
+% Will do, when I die.
+%-------------End of Respond-------------------
 
 end
 

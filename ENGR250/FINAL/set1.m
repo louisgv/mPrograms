@@ -8,7 +8,6 @@ function set1()
 % For this problem, solve this system instead on the line, 
 % which simplifies the equation to 
 
-
 % d2p(x)/d2x = r(x)
 
 % Solve this equation for x in [0,10] with , dx = 0.1
@@ -30,8 +29,11 @@ function set1()
 % with the “diag” function in MATLAB
 
 % Name your solution vector “Final1”, and plot its value vs 
+x = 0:0.1:10;
 
-x= 0:0.1:10;
+coeff = diag(-2*ones(1,99)) + diag(ones(1,98),1) + diag(ones(1,98),-1);
+
+
 
 dy = @ (t,y) -10.8*y;
 
@@ -39,7 +41,7 @@ dy = @ (t,y) -10.8*y;
 
 Final1 = y;
 
-plot (t, y,'-.k', t, exp(-10.8*t), '--r');
+plot (x, Final1,'-.k', t, exp(-10.8*t), '--r');
 
 end
 
