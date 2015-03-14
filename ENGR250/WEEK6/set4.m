@@ -27,6 +27,8 @@ HW6_9  =    solution(:,1);
 HW6_10 =    solution(:,2);
 HW6_11 =    solution(:,3);
 
+% plot (t, HW6_9,'-k', t, HW6_10, ':r',t, HW6_11, '.b');
+
 save HW6_9.dat HW6_9 -ascii;
 save HW6_10.dat HW6_10 -ascii;
 save HW6_11.dat HW6_11 -ascii;

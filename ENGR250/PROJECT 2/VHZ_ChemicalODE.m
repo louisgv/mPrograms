@@ -1,20 +1,16 @@
-function [ a,b,c ] = VHZ_ChemicalODE()
-%VHZ_CHEMICALODE Summary of this function goes here
-%   Detailed explanation goes here
+function [t_K, y_K] = VHZ_ChemicalODE(ka, kc)
+%VHZ_CHEMICALODE This function calculate the dating given two chemical
+%Constant
+%   Using ODE 45 to solve using initial condition
 
-
-ode = @(t, y)[    
-    -y(2)-y(3);
-    y(1)+0.2*y(2);
-    0.2 + y(3)*(y(1)-5.4);
-        
+K_Ar_dating = @(t,x)[
+    -(kc+ka).*x(1);
+    ka.*x(1);
+    kc.*x(1);
     ];
 
-[t, solution] = ode45( ode, [0 5], [1 1 1]);
 
-    a  =    solution(:,1);
-    b =    solution(:,2);
-    c  =    solution(:,3);
+[t_K, y_K]=ode45(K_Ar_dating,[0 10],[1 0 0]);
 
 end
 

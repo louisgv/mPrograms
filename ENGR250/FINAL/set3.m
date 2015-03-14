@@ -24,7 +24,7 @@ HW6_6 = y45(:,2);
 % - Save the y(t) (0  t  10) on HW6 7.dat file
 % - Save the y'(t) (0  t  10) on HW6 8.dat file
 
-[t23,y23] = ode23s(ode,[0 10],[1 0]);
+[t23,y23] = ode23s(ode,[0,10],[1;0]);
 HW6_7 = y23(:,1);
 HW6_8 = y23(:,2);
 

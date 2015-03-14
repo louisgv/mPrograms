@@ -1,10 +1,13 @@
 function set2()
 % Set 2 ----------------------------------------------
-% Pendulum ODE
-% Consider a pendulum of length l moving in the xy plane. 
-% The pendulum is fixed with a pin on one end and 
-% a mass at the other. 
-% Note that g = 9:81m=s2 and l = 5:5m. 
+% Interpolation and Numerical Differentiation
+
+% The value of splines
+% In class we discussed the value of splines and how they 
+% do more than make a graph look pretty. 
+
+% The purpose of this problem is to provide an example of the value 
+% of splines by combining several things we have now learned.
 
 g = 9.81;
 l = 5.5;
