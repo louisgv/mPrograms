@@ -11,7 +11,7 @@ error = x_mid - cos(x_mid);
 while ( abs(error) > 1e-10)
     if (error > 0)
         x_upper = x_mid;
-    else 
+    else
         x_lower = x_mid;
     end
     x_mid = (x_upper + x_lower)/2;
