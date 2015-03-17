@@ -1,12 +1,12 @@
 function set1()
 % Set 1 ----------------------------------------------
 % Linear Systems
-% Numerical solutions of Poisson�s equation
+% Numerical solutions of Poisson's equation
 
-% As discussed in class on 3/10-11, Solving the equation ultimately leaves 
+% As discussed in class on 3/10-11, Solving the equation ultimately leaves
 % us solving a linear system of the form Ax = b
-% For this problem, solve this system instead on the line, 
-% which simplifies the equation to 
+% For this problem, solve this system instead on the line,
+% which simplifies the equation to
 
 % d2p(x)/d2x = r(x)
 
@@ -24,17 +24,17 @@ x_b = dx:dx:10-dx;
 
 b = arrayfun(r,(x_b'))*(dx^2);
 
-% This type of boundary condition, where the function value is 
+% This type of boundary condition, where the function value is
 % specified on the boundary, is called a Dirichlet boundary condition.
 
-% Recall, this generates a large system of equations 
+% Recall, this generates a large system of equations
 % at each point on the line of the form
 
 % p_(x-1) - 2 * p_i + p_(i+1) = p_i ( del(x)^2
 
-% Which is valid at each internal grid point. 
-% Building the Matrix A can be done in a fairly automated fashion 
-% with the �diag� function in MATLAB
+% Which is valid at each internal grid point.
+% Building the Matrix A can be done in a fairly automated fashion
+% with the 'diag function in MATLAB
 
 A = diag(ones(1,98),1) + diag(-2*ones(1,99)) + diag(ones(1,98),-1);
 
@@ -48,4 +48,3 @@ Final1 = [0;p;0];
 plot (x, Final1,'-.k');
 
 end
-
