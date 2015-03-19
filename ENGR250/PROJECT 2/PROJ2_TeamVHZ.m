@@ -1,21 +1,20 @@
-% Version 1.0
-% Interactive Version! Now we can input different stuffs!
+% Version 2.0
+% Near-Final Version! Now the plot can be saved into file!
 
 close all;
 clearvars;
 clc;
 % ---------------------Just some fancy introductions-----------------------
-projectName = {'Project:' 'Whooping Awesome Second Project'};
+projectName = {'Project:' 'A.R.T'};
 teamName = {'Team:' 'VHZ'};
 teamMembers = {'Members:' 'Vlad Yarmolik' 'Hai H Nguyen' 'Zachary Burns'};
 disp('^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-');
 disp(projectName); disp(teamName); disp(teamMembers);
-disp('We (VHZ) proudly present our MatLab solution for The');
-disp('Whooping Awesome Second Project');
-fprintf('assigned on the 11th of March, 2015.\n\n');
+disp('We (VHZ) proudly present our A.R.T MatLab Project');
+fprintf('11th of March, 2015.\n\n');
 disp('Please prepare your initial inputs:');
 
-isReady = input('     Are you Ready? [Enter]:','s');
+isReady = input('    Are you Ready? [Enter]:','s');
 while ~isempty(isReady)
     isReady = [];
 end
@@ -24,9 +23,9 @@ end
 
 name = {c1, c2, c3};
 
-[k1, k2] = VHZ_ChemicalConstantPrompt(c2,c3);
+[l1, l2] = VHZ_ChemicalConstantPrompt(c2,c3);
 
-[t_K,y_K] = VHZ_ChemicalODE(k1, k2);
+[t_K,y_K] = VHZ_ChemicalODE(l1, l2);
 
 VHZ_ChemicalPlot(t_K, y_K, name);
 
