@@ -197,7 +197,7 @@ hold off;
 %-------------Respond Below--------------------
 %
 % #1: Spline
-% #2: Coarse 
+% #2: Coarse
 % #3: Linear
 % #4: Nearest
 %

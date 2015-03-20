@@ -5,12 +5,12 @@ close all;
 clearvars;
 clc;
 % ---------------------Just some fancy introductions-----------------------
-projectName = {'Project:' 'A.R.T'};
+projectName = {'Project:' 'M.A.D'};
 teamName = {'Team:' 'VHZ'};
 teamMembers = {'Members:' 'Vlad Yarmolik' 'Hai H Nguyen' 'Zachary Burns'};
 disp('^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-');
 disp(projectName); disp(teamName); disp(teamMembers);
-disp('We (VHZ) proudly present our A.R.T MatLab Project');
+disp('We (VHZ) proudly present our M.A.D Project');
 fprintf('11th of March, 2015.\n\n');
 disp('Please prepare your initial inputs:');
 

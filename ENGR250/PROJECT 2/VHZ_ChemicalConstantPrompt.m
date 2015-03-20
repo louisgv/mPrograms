@@ -1,7 +1,7 @@
 function [l1, l2] = VHZ_ChemicalConstantPrompt(c2,c3)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-s1 = '    Constant of ';
+s1 = '    Decay Constant of ';
 s2 = ' in nano-unit (10^9)? [Enter for Argon-40] ';
 s3 = ' in nano-unit (10^9)? [Enter for Calcium-40] ';
 
