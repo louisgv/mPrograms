@@ -40,23 +40,10 @@ d2ydx2true = -sin(xfine);
 % Use O(del(x)^2) accurate finite difference
 % schemes on the coarse data.
 
-n = length(ycoarse);
-
 % Call the derivatives
-dydxcoarse = zeros(n);
-    dydxcoarse(1)= (-3*ycoarse(1)+4*ycoarse(2)-ycoarse(3))/(2*dxfine);
-        for i=2:n-1
-            dydxcoarse(i) = (ycoarse(i+1)-ycoarse(i-1))/(2*dxfine);
-        end
-    dydxcoarse(n)=(3*ycoarse(n)-4*ycoarse(n-1) + ycoarse(n-2))/(2*dxfine);
+dydxcoarse = fprime (ycoarse, dxcoarse, 2);
 % and
-d2ydx2coarse = zeros(n);
-    d2ydx2coarse(1)=  (2*ycoarse(1) - 5*ycoarse(2) + 4*ycoarse(3)-ycoarse(4))/dxfine^2;
-        for i=2:n-1
-            d2ydx2coarse(i) = (ycoarse(i+1)-2*ycoarse(i) + ycoarse(i-1))/dxfine^2;
-        end
-    d2ydx2coarse(n)=  (2*ycoarse(n) - 5*ycoarse(n-1) + 4*ycoarse(n-2)-ycoarse(n-3))/dxfine^2;
-
+d2ydx2coarse = fdoubleprime (ycoarse, dxcoarse, 2);
 
 % 3) Finite difference on "nearest" interpolation
 % Using O(del(x)^2) accurate finite difference
@@ -67,9 +54,9 @@ d2ydx2coarse = zeros(n);
 ynearest = interp1(xcoarse, ycoarse, xfine,'nearest');
 
 % Call the derivatives
-dydxnearest = interp1(xcoarse, dydxcoarse, xfine, 'nearest');
+dydxnearest = fprime (ynearest, dxfine, 2);
 % and
-d2ydx2nearest= interp1(xcoarse, d2ydx2coarse, xfine, 'nearest');
+d2ydx2nearest= fdoubleprime (ynearest, dxfine, 2);
 
 % 4) Finite difference on linear interpolation
 % Using O(del(x)^2) accurate finite difference % schemes on the coarse data interpolated
@@ -79,9 +66,9 @@ d2ydx2nearest= interp1(xcoarse, d2ydx2coarse, xfine, 'nearest');
 ylinear = interp1(xcoarse, ycoarse, xfine);
 
 % Call the derivatives
-dydxlinear = interp1(xcoarse, dydxcoarse, xfine);
+dydxlinear = fprime (ylinear, dxfine, 2);
 % and
-d2ydx2linear = interp1(xcoarse, d2ydx2coarse, xfine);
+d2ydx2linear = fdoubleprime (ylinear, dxfine, 2);
 
 %5) Finite difference on spline interpolation
 % Using O(del(x)^2) accurate finite difference
@@ -92,9 +79,9 @@ d2ydx2linear = interp1(xcoarse, d2ydx2coarse, xfine);
 yspline = interp1(xcoarse, ycoarse, xfine, 'spline');
 
 % Call the derivatives
-dydxspline = interp1(xcoarse, dydxcoarse, xfine, 'spline');
+dydxspline = fprime (yspline, dxfine, 2);
 %and
-d2ydx2spline = interp1(xcoarse, d2ydx2coarse, xfine, 'spline');
+d2ydx2spline = fdoubleprime (yspline, dxfine, 2);
 
 % Create three plots:
 % For the plot of the function,
