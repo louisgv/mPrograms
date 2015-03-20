@@ -43,8 +43,15 @@ p = A\b;
 % Name your solution vector
 Final1 = [0;p;0];
 
-% and plot its value vs
+scrsz = get(groot,'ScreenSize');
+% close all;
 
+% and plot its value vs
+figure ('Name','Set 1','NumberTitle','off',...
+    'OuterPosition', [1 scrsz(4)/2 scrsz(3)/2 scrsz(4)/3]);
+hold on;
+title('Poisson''s equation');
 plot (x, Final1,'-.k');
+hold off;
 
 end

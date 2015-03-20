@@ -83,36 +83,55 @@ dydxspline = fprime (yspline, dxfine, 2);
 %and
 d2ydx2spline = fdoubleprime (yspline, dxfine, 2);
 
+scrsz = get(groot,'ScreenSize');
+
 % Create three plots:
 % For the plot of the function,
 % plot all 5 methods.
-figure; hold on;
+% close all;
+
+figure ('Name','Set 2 f(x)','NumberTitle','off',...
+    'OuterPosition', [scrsz(3)/2 scrsz(4)/2 scrsz(3)/2 scrsz(4)/3]); 
+hold on;
 title('Original Function plots');
-plot(   xcoarse, ycoarse, ...
-        xfine, yfine,...
-        xfine, ylinear,...
-        xfine, ynearest,...
-        xfine, yspline);
+plot(   xcoarse,   ycoarse,     'Ok', ...
+        xfine,     yfine,       'r',...
+        xfine,     ylinear,     'g',...
+        xfine,     yspline,     '--b',...
+        xfine,     ynearest,    '--c',...
+        'markers', 10.8);
+legend('Coarse','True','Linear','Spline','Nearest');
 hold off;
 
 % For the derivative, plot all except "nearest"
 
-figure; hold on;
+figure ('Name','Set 2 f(x)''','NumberTitle','off', ...
+    'OuterPosition', [1 scrsz(4)/2-scrsz(4)/3 scrsz(3)/2 scrsz(4)/3]); 
+hold on;
 title('First Derivative plots');
-plot(   xcoarse, dydxcoarse,...
-        xfine, dydxtrue,...
-        xfine, dydxlinear,...
-        xfine, dydxspline);
+plot(   xcoarse,   dydxcoarse,     'Ok', ...
+        xfine,     dydxtrue,       'r',...
+        xfine,     dydxlinear,     'g',...
+        xfine,     dydxspline,     '--b',...
+        'markers', 10.8);
+%       xfine,     dydxnearest,    '--c',...
+legend('Coarse','True','Linear','Spline');
 hold off;
 
 % For the second derivative, plot all except
 % the linear and spline interpolation.
 
-figure; hold on;
+figure ('Name','Set 2 f(x)''''','NumberTitle','off', ...
+    'OuterPosition', [scrsz(3)/2 scrsz(4)/2-scrsz(4)/3 scrsz(3)/2 scrsz(4)/3]); 
+hold on;
 title('Second Derivative plots');
-plot(   xcoarse, d2ydx2coarse,...
-        xfine, d2ydx2true,...
-        xcoarse, d2ydx2nearest);
+plot(   xcoarse, d2ydx2coarse,      'Ok',...
+        xfine,   d2ydx2true,        'r',...
+        xfine,   d2ydx2nearest,     '--c',...
+        'markers', 10.8);
+%       xfine,   d2ydx2linear,      'g',...
+%       xfine,   d2ydx2spline,      '--b',...
+legend('Coarse','True','Nearest');
 hold off;
 
 % Notice how the accuracy of the
@@ -125,15 +144,14 @@ hold off;
 % known at coarse locations.
 
 
-
 %-------------Notes--------------------------------------------------------
 % To make the plots and lines easier to
 % distinguish, I recommend using the
 % "legend" and "title" commands in Matlab.
 
-% When option 1) above is unavailable
+% When option 1) aboveis unavailable
 % (i.e., the function is not known),
-%     and a derivative is needed,
+%     and a derivative  is needed,
 
 %     (2) is the most obvious option,
 %     but gives the derivative based only
@@ -158,14 +176,18 @@ hold off;
 % from best to worst at:
 % a) Fitting the data (x_coarse, y_coarse)
 %-------------Respond Below--------------------
-%
-%
+% 
+% #1: Spline
+% #2: Linear
+% #3: Nearest
 %
 %-------------End of Respond-------------------
 % b) Fitting the parent function, (y = sin(x))
 %-------------Respond Below--------------------
 %
-%
+% #1: Spline
+% #2: Linear
+% #3: Nearest
 %
 %-------------End of Respond-------------------
 % 2) Regarding the calculation of the
@@ -174,7 +196,10 @@ hold off;
 % parent function derivative, dy/dx = cos(x).
 %-------------Respond Below--------------------
 %
-%
+% #1: Spline
+% #2: Coarse 
+% #3: Linear
+% #4: Nearest
 %
 %-------------End of Respond-------------------
 % How would you rate the accuracy
@@ -182,7 +207,8 @@ hold off;
 % how coarse the data was it came from?
 %-------------Respond Below--------------------
 %
-%
+% With an average error of ~0.001 (estimated by zooming the plot)
+%  the spline method is very accurate.
 %
 %-------------End of Respond-------------------
 % 3) Regarding the calculation of the
@@ -192,8 +218,10 @@ hold off;
 % second derivative, d2y/d2x =-sin(x)
 %-------------Respond Below--------------------
 %
-%
-%
+% #1: Spline
+% #2: Coarse 
+% #3: Linear
+% #4: Nearest
 %
 %-------------End of Respond-------------------
 
